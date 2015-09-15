@@ -5,10 +5,71 @@
 
 {% block content %}
 
-  <div class="container">
+<div class="container">
 
-    <h1>{{ title }}</h1>
-    <p>Welcome to {{ title }}</p>
+    <div class="add-exercise">
+
+    <h1 class="text-center">Add an Exercise</h1>
+
+    <form>
+      <div class="form-group">
+        <input type="text" class="form-control" id="name" placeholder="Enter the exercise name" required>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="description" placeholder="Enter the exercise description" required>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="size" placeholder="Enter the technologies used" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+
+  </div>
+
+  <br><hr>
+
+  <div class="message-section">
+    <p class="alert alert-info" role="alert" id="message"></p>
+  </div>
+
+  <div class="exercise-section">
+    <h2 class="text-center"></h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Tags</th>
+        </tr>
+      </thead>
+      <tbody id="all-exercises"></tbody>
+    </table>
+  </div>
+
+  <div class="edit-section">
+    <h2 class="text-center" id="edit-title">Edit Exercise</h2>
+    <form method="post">
+      <div class="form-group">
+        <label>Exercise Name</label>
+        <input id="edit-name" type="text" name="name" class="form-control"  required>
+      </div>
+       <div class="form-group">
+        <label>Exercise Description</label>
+        <input id="edit-description" type="text" name="description" class="form-control" required>
+      </div>
+       <div class="form-group">
+        <label>Exercise Technology Tags</label>
+        <input id="edit-tags" type="text" name="tags" class="form-control"  required>
+      </div>
+      <button type="submit" class="btn btn-default update-button">Update Exercise</button>
+    </form>
+
+    <br>
+
+
+
+  </div>
+
 
   </div>
 
