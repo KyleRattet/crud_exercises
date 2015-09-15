@@ -16,6 +16,8 @@ $('form').on('submit', function (e) {
   //post request to server
   $.post('/api/v1/exercises', payload, function(data) {
     // append 'Added' to DOM
+    console.log(payload);
+    console.log(data);
     $('.message-section').show();
     $('#message').html('Added a new exercise.');
     // get all exercises
@@ -98,7 +100,7 @@ function getExercises() {
   $.get('/api/v1/exercises', function(data) {
     if(data.length === 0) {
       console.log(data);
-      $('.exercise-section h2').html('No colleges! Add an exercise above.');
+      $('.exercise-section h2').html('No exercises! Add an exercise above.');
     } else {
       $('.exercise-section h2').html('All exercises');
       // loop through array of objects, appending each to the DOM

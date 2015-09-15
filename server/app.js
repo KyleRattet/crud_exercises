@@ -1,3 +1,4 @@
+require('./models/exercise.js');
 // *** main dependencies *** //
 var express = require('express');
 var path = require('path');
@@ -15,6 +16,10 @@ var apiRoutes = require('./routes/api.js');
 
 // *** express instance *** //
 var app = express();
+
+//seed database
+var databaseSeed = require('../seed');
+databaseSeed();
 
 // *** config file *** //
 var config = require('./_config');

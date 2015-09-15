@@ -80,3 +80,4 @@ router.delete('/exercise/:id', function (req, res, next) {
   });
 });
 
+
