@@ -24,6 +24,15 @@ router.get('/exercises', function(req, res, next) {
 
 
 //ROUTE 2 GET(a single exercise) /api/v1/exercise/:id
+router.get('/exercise/:id', function(req, res, next) {
+  Exercise.findById(req.params.id, function (err, data){
+     if (err) {
+      res.json({'message': err});
+    } else {
+      res.json(data);
+    }
+  });
+});
 
 //ROUTE 3  POST /api/v1/exercises
 router.post('/exercises', function(req, res, next) {
