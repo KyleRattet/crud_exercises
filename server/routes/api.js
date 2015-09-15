@@ -52,7 +52,31 @@ router.post('/exercises', function(req, res, next) {
 });
 
 //ROUTE 4  PUT /api/v1/exercise/:id
+router.put('/exercise/:id', function(req, res, next) {
+  var update = {
+    name: req.body.name,
+    description: req.body.description,
+    tags: req.body.tags
+  };
+  var options = {new: true};
+  Exercise.findByIdAndUpdate(req.params.id, update, options, function(err, data){
+    if(err){
+      res.json({'message': err});
+    } else {
+      res.json({'UPDATED' : data});
+    }
+  });
+});
 
 
 //ROUTE 5 DELETE /api/v1/exercise/:id
+router.delete('/exercise/:id', function (req, res, next) {
+  Exercise.findByIdAndRemove(req.params.id, function (err, data) {
+    if (err) {
+      res.json ({'message': err});
+    } else {
+      res.json({'REMOVED' :data});
+    }
+  });
+});
 

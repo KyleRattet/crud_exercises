@@ -76,7 +76,6 @@ describe('Exercises', function() {
     .post('/api/v1/exercises')
     .send({'name': 'Functions', 'description': 'javaScript', 'tags' : ['vanillaJS']})
     .end(function(err, res){
-      console.log(res.body);
       res.should.have.status(200);
       res.should.be.json;
       res.body.should.be.a('object');
@@ -92,6 +91,47 @@ describe('Exercises', function() {
       done();
     });
   });
-  // it('should update a SINGLE exercise on /exercise/<id> PUT');
-  // it('should delete a SINGLE exercise on /exercise/<id> DELETE');
+
+  it('should update a SINGLE exercise on /exercise/<id> PUT', function(done) {
+  chai.request(server)
+    .get('/api/v1/exercises')
+    .end(function(err, res){
+      chai.request(server)
+        .put('/api/v1/exercise/'+res.body[0]._id)
+        .send({'name': 'Angular Intro'})
+        .end(function(error, response){
+          console.log(response.body);
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('object');
+          response.body.should.have.property('UPDATED');
+          response.body.UPDATED.should.be.a('object');
+          response.body.UPDATED.should.have.property('name');
+          response.body.UPDATED.should.have.property('_id');
+          response.body.UPDATED.name.should.equal('Angular Intro');
+          done();
+      });
+    });
+  });
+
+  it('should delete a SINGLE exercise on /exercise/<id> DELETE', function(done) {
+  chai.request(server)
+    .get('/api/v1/exercises')
+    .end(function(err, res){
+      chai.request(server)
+        .delete('/api/v1/exercise/'+res.body[0]._id)
+        .end(function(error, response){
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('object');
+          response.body.should.have.property('REMOVED');
+          response.body.REMOVED.should.be.a('object');
+          response.body.REMOVED.should.have.property('name');
+          response.body.REMOVED.should.have.property('_id');
+          response.body.REMOVED.name.should.equal('Game Library');
+          done();
+      });
+    });
+  });
+
 });
