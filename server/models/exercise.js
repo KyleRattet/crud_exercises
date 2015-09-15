@@ -10,3 +10,5 @@ var Exercise = new Schema (
 
 
 module.exports = mongoose.model('exercises', Exercise);
+
+mongoose.connect(process.env.MONGOLAB_URI || "mongodb://localhost/exercises")
